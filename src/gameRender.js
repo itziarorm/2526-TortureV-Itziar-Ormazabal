@@ -36,8 +36,6 @@ function drawGame() {
         globals.ctx.fillText("\u{1F49A}", 240 + 20 * i , 20);
     }
     
-
-    
     renderLevel();
 
     drawSprites();
@@ -64,12 +62,13 @@ function renderSprite(sprite){
 
     const xPos = Math.floor(sprite.xPos);
     const yPos = Math.floor(sprite.yPos);
-
+        
     globals.ctx.fillText(
 
-        "\u{1F474}",
+        sprite.text,
         xPos, yPos
     );
+    
 }
 
 function renderLevel(){
@@ -103,4 +102,13 @@ function renderLevel(){
             }   
         }
     }
+}
+
+function gameOver(){
+
+    globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
+
+    globals.ctx.font = "16px emulogic";
+    globals.ctx.fillStyle = "white";
+    globals.ctx.fillText("GAME OVER", 140, 120);
 }

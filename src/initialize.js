@@ -53,20 +53,37 @@ function initLevel(){
 function initSprites(){
 
     initPlayer();
+    initMoney();
 }
 
 function initPlayer(){
 
-    const physics = new Physics(25);
+    const physics = new Physics(0.25 * 32);
 
     const hitbox = new HitBox(14, 14, 16, 16);
     
     let xPos = 160;
     let yPos = 190;
 
-    const player = new Sprite(SpriteID.PLAYER, State.DOWN, xPos, yPos, physics, hitbox);
+    const text = "\u{1F474}";
+
+    const player = new Sprite(SpriteID.PLAYER, State.DOWN, xPos, yPos, physics, hitbox, text);
 
     globals.sprites.push(player);
+}
+
+function initMoney(){
+
+    const hitbox = new HitBox(14, 14, 16, 16);
+    
+    let xPos = 220;
+    let yPos = 64;
+
+    const text = "\u{1F4B5}";
+
+    const money = new Sprite(SpriteID.MONEY, State.DOWN, xPos, yPos, 0, hitbox, text);
+
+    globals.sprites.push(money);
 }
 
 export{

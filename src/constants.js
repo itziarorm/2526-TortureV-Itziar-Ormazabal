@@ -54,3 +54,8 @@ export const Key = {
     DOWN:   40,       
     RIGHT:  39,       
 }
+
+export const RandomFreePositions = [
+
+    [112, 112], [100, 112], [100, 100], [112, 126], [126, 126], [112, 142]
+]

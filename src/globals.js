@@ -24,5 +24,7 @@ export default{
     action: {},
 
     score: 0,
-    life: 0
+    life: 0,
+
+    text: {}
 }

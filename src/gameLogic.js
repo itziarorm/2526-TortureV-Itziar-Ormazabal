@@ -1,4 +1,4 @@
-import { Game, SpriteID, State, Key } from "./constants.js";
+import { Game, SpriteID, State, Key, RandomFreePositions } from "./constants.js";
 import globals from "./globals.js";
 import { Collision } from "./constants.js";
 import detectCollisions from "./collisions.js";
@@ -17,8 +17,8 @@ export default function update(){
             gameOver();
             break;
 
-            default:
-                break;
+        default:
+            break;
     }
 }
 
@@ -60,7 +60,26 @@ function updateSprite(sprite){
 
         case SpriteID.MONEY:
 
+            updateScore(sprite);
+
+            if(sprite.isCollidingWithPlayer){
+                
+                const randomIndex = Math.floor(Math.random() * RandomFreePositions.length);
+                const newPosition = RandomFreePositions[randomIndex];
+
+                sprite.xPos = newPosition[0];
+                sprite.yPos = newPosition[1];
+            }
+
             break;
+    }
+}
+
+function updateScore(sprite){
+
+    if(sprite.isCollidingWithPlayer){
+
+        globals.score += 100;
     }
 }
 
@@ -104,6 +123,8 @@ function updatePlayer(sprite){
     sprite.yPos += sprite.physics.vy * globals.deltaTime;
 
 }
+
+
 
 function updateSpider(sprite){
 
@@ -194,9 +215,13 @@ function readKeyboardAndAssignState(sprite){
 
 function isGameOver(){
 
+    if(globals.life === 0 ){
+
+        globals.gameState = Game.GAME_OVER;
+    }
 }
 
 function gameOver(){
 
-
+    
 }
