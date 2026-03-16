@@ -9,7 +9,16 @@ export default function render(){
 
             drawGame();
 
-        break;
+            break;
+
+        case Game.GAME_OVER:
+                    
+            gameOver();
+
+            break;
+
+        default:
+            break;
 
     }
 }
@@ -22,9 +31,45 @@ function drawGame() {
     globals.ctx.fillStyle = "white";
     globals.ctx.fillText("SCORE     " + globals.score, 10, 20);
 
+    for(let i = 0; i < globals.life; i++){
+
+        globals.ctx.fillText("\u{1F49A}", 240 + 20 * i , 20);
+    }
+    
+
     
     renderLevel();
 
+    drawSprites();
+
+}
+
+function drawSprites(){
+
+    for(let i = 0; i < globals.sprites.length; ++i){
+
+        const sprite = globals.sprites[i];
+
+        renderSprite(sprite);
+    }
+}
+
+function renderSprite(sprite){
+
+    //const xPosInit = sprite.imageSet.initCol * sprite.imageSet.gridSize;
+    //const yPosInit = sprite.imageSet.initFil * sprite.imageSet.gridSize;
+
+    //const xTile = xPosInit + sprite.frames.frameCounter * sprite.imageSet.gridSize + sprite.imageSet.xOffset;
+    //const yTile = yPosInit + sprite.state * sprite.imageSet.gridSize + sprite.imageSet.yOffset;
+
+    const xPos = Math.floor(sprite.xPos);
+    const yPos = Math.floor(sprite.yPos);
+
+    globals.ctx.fillText(
+
+        "\u{1F474}",
+        xPos, yPos
+    );
 }
 
 function renderLevel(){
@@ -53,8 +98,9 @@ function renderLevel(){
                 globals.ctx.fillText(
                     
                     "\u2B1C",
-                    30 + xPos + offsetX, 35 + yPos + brickSize - offsetY,
+                    30 + xPos + offsetX, 35 + yPos + brickSize - offsetY
                 );
-        }   }
+            }   
+        }
     }
 }

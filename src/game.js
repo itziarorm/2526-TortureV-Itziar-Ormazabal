@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { initHTMLelements, initSprites, initVars, initLevel, initEvents, loadAssets } from "./initialize.js";
+import { initHTMLelements, initSprites, initVars, initLevel, initEvents } from "./initialize.js";
 import update from "./gameLogic.js";
 import render from "./gameRender.js";
 

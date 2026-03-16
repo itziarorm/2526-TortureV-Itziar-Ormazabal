@@ -1,3 +1,6 @@
+import { Key } from "./constants.js";
+import globals from "./globals.js";
+
 export function keydownHandler(event){
 
     switch(event.keyCode){

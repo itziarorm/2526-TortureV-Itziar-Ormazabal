@@ -1,7 +1,10 @@
 import globals from "./globals.js";
-import { Game, FPS, Block } from "./constants.js";
+import { Game, FPS, Block, SpriteID, State } from "./constants.js";
 import { Level, level1 } from "./Level.js";
 import { keydownHandler, keyupHandler } from "./events.js";
+import Sprite from "./Sprite.js";
+import Physics from "./Physics.js";
+import HitBox from "./HitBox.js";
 
 function initHTMLelements(){
 
@@ -32,6 +35,7 @@ function initVars(){
     }
 
     globals.score = 0;
+    globals.life = 3;
 }
 
 function initEvents(){
@@ -41,6 +45,10 @@ function initEvents(){
     window.addEventListener("keyup", keyupHandler, false);
 }
 
+function initLevel(){
+
+    globals.level = new Level(level1);
+}
 
 function initSprites(){
 
@@ -49,12 +57,16 @@ function initSprites(){
 
 function initPlayer(){
 
+    const physics = new Physics(25);
 
-}
+    const hitbox = new HitBox(14, 14, 16, 16);
+    
+    let xPos = 160;
+    let yPos = 190;
 
-function initLevel(){
+    const player = new Sprite(SpriteID.PLAYER, State.DOWN, xPos, yPos, physics, hitbox);
 
-    globals.level = new Level(level1);
+    globals.sprites.push(player);
 }
 
 export{

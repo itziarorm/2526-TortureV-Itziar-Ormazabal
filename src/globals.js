@@ -23,5 +23,6 @@ export default{
 
     action: {},
 
-    score: 0
+    score: 0,
+    life: 0
 }
