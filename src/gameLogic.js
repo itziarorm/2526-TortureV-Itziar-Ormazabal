@@ -2,6 +2,8 @@ import { Game, SpriteID, State, Key, RandomFreePositions } from "./constants.js"
 import globals from "./globals.js";
 import { Collision } from "./constants.js";
 import detectCollisions from "./collisions.js";
+import Sprite from "./Sprite.js";
+import { initSprites } from "./initialize.js";
 
 export default function update(){
 
@@ -54,7 +56,8 @@ function updateSprite(sprite){
         
         case SpriteID.SPIDER:
 
-            updateSpider();
+            updateSpider(sprite);
+            updateLife(sprite);
 
             break;
 
@@ -80,6 +83,16 @@ function updateScore(sprite){
     if(sprite.isCollidingWithPlayer){
 
         globals.score += 100;
+    }
+}
+
+function updateLife(sprite){
+
+    if(sprite.isCollidingWithPlayer){ 
+            
+        globals.life--;
+
+        initSprites();
     }
 }
 
@@ -124,8 +137,6 @@ function updatePlayer(sprite){
 
 }
 
-
-
 function updateSpider(sprite){
 
     switch(sprite.state){
@@ -144,7 +155,7 @@ function updateSpider(sprite){
     sprite.xPos += sprite.physics.vx * globals.deltaTime;
 
     //update animation frame
-    updateAnimationFrame(sprite);
+    //updateAnimationFrame(sprite);
 
     //update direction randomly
     updateDirectionRandom(sprite);
@@ -186,7 +197,7 @@ function calculateCollisionWithBorders(sprite){
     let isCollision = false;
 
     //right border collision
-    if(sprite.xPos + sprite.imageSet.xSize > globals.canvas.width){
+    if(sprite.xPos + 16 > globals.canvas.width){
 
         isCollision = true;
     }

@@ -26,5 +26,5 @@ export default{
     score: 0,
     life: 0,
 
-    text: {}
+    text: {},
 }

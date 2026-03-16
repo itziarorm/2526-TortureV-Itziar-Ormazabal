@@ -54,11 +54,12 @@ function initSprites(){
 
     initPlayer();
     initMoney();
+    initSpider();
 }
 
 function initPlayer(){
 
-    const physics = new Physics(0.25 * 32);
+    const physics = new Physics(0.25 * 64);
 
     const hitbox = new HitBox(14, 14, 16, 16);
     
@@ -84,6 +85,22 @@ function initMoney(){
     const money = new Sprite(SpriteID.MONEY, State.DOWN, xPos, yPos, 0, hitbox, text);
 
     globals.sprites.push(money);
+}
+
+function initSpider(){
+
+    const physics = new Physics(0.25 * 32);
+
+    const hitbox = new HitBox(14, 14, 16, 16);
+    
+    let xPos = 130;
+    let yPos = 68;
+
+    const text = "\u{1F577}";
+
+    const player = new Sprite(SpriteID.SPIDER, State.DOWN, xPos, yPos, physics, hitbox, text);
+
+    globals.sprites.push(player);
 }
 
 export{

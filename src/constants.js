@@ -27,6 +27,14 @@ export const State = {
     UP:          1,
     LEFT:        2,
     RIGHT:       3,
+    STILL_UP:    6,
+    STILL_LEFT:  7,
+    STILL_DOWN:  5,
+    STILL_RIGHT: 8,
+    
+    LEFT_2:        0,
+    RIGHT_2:       1,
+
 }
 
 export const Tile = {
@@ -41,10 +49,6 @@ export const Collision = {
     BORDER_DOWN: 1,
     BORDER_LEFT: 2,
     BORDER_RIGHT: 3,
-    STILL_UP:    6,
-    STILL_LEFT:  7,
-    STILL_DOWN:  5,
-    STILL_RIGHT: 8,
 }
 
 export const Key = {
